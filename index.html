@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integr8 | O Método Magnético</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  
+  <!-- Lenis & GSAP -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="dark-theme">
+
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo magnetic" data-strength="20">
+        <img src="assets/images/logo.png" alt="Integr8 Logo">
+      </a>
+      <div class="navbar__links">
+        <a href="#metodo" class="magnetic" data-strength="15">O Método</a>
+        <a href="#app" class="magnetic" data-strength="15">App</a>
+        <a href="#cta" class="btn-magnetic" data-strength="40">
+          <span class="btn-text">Iniciar Protocolo</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+      <div class="hero__glow"></div>
+      <div class="hero__content">
+        <p class="hero__kicker fade-up">MÉTODO INTEGR8</p>
+        <h1 class="hero__title">
+          <span class="line"><span class="word">Seu</span> <span class="word">corpo</span> <span class="word">evolui.</span></span>
+          <span class="line text-gradient"><span class="word">O</span> <span class="word">método</span> <span class="word">se</span> <span class="word">adapta.</span></span>
+        </h1>
+        <p class="hero__subtitle fade-up" data-delay="0.2">
+          Treino, Nutrição e Monitoramento contínuo. Tudo guiado por dados, ajustado pelo coach e focado em resultados reais.
+        </p>
+        <div class="hero__cta-wrapper fade-up" data-delay="0.4">
+          <a href="#cta" class="btn-primary magnetic" data-strength="50">
+            <span class="btn-text">Descubra o Integr8</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Hero Mockup 3D Tilt -->
+      <div class="hero__visual fade-up" data-delay="0.6">
+        <div class="hero__mockup-wrapper" data-tilt>
+          <div class="mockup-glow"></div>
+          <img src="assets/images/hero_mockup.png" alt="App Integr8" class="hero__mockup-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- STICKY SCROLL SECTION (APP FEATURES) -->
+    <section class="features" id="metodo">
+      <div class="features__container">
+        
+        <!-- Pinned Left Side -->
+        <div class="features__left">
+          <div class="features__sticky-content">
+            <h2 class="features__title">A precisão que você não tinha.</h2>
+            <p class="features__desc">O problema nunca foi a sua disciplina. Foi a falta de um sistema que conectasse os pontos.</p>
+            
+            <div class="features__nav">
+              <div class="features__nav-item active" data-target="0">01. Treino Guiado</div>
+              <div class="features__nav-item" data-target="1">02. Nutrição Dinâmica</div>
+              <div class="features__nav-item" data-target="2">03. Monitoramento</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scrolling Right Side -->
+        <div class="features__right">
+          <div class="features__card" id="card-0">
+            <div class="card__glow"></div>
+            <img src="assets/images/app_training.png" alt="Treino">
+            <div class="card__content">
+              <h3>Treino que evolui com você</h3>
+              <p>O aplicativo entrega a prescrição exata. Vídeos dos movimentos, controle de carga e progressão inteligente.</p>
+            </div>
+          </div>
+          <div class="features__card" id="card-1">
+            <div class="card__glow"></div>
+            <img src="assets/images/app_nutrition.png" alt="Nutrição">
+            <div class="card__content">
+              <h3>Nutrição que você consegue manter</h3>
+              <p>Sem dietas genéricas. Você registra as refeições, e o coach faz ajustes finos para quebrar platôs sem restrições absurdas.</p>
+            </div>
+          </div>
+          <div class="features__card" id="card-2">
+            <div class="card__glow"></div>
+            <img src="assets/images/app_stats.png" alt="Monitoramento">
+            <div class="card__content">
+              <h3>Dados em tempo real</h3>
+              <p>Integração com smartwatch para cruzar dados de sono, atividade e recuperação. A métrica certa na hora certa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE / STATEMENT -->
+    <section class="statement">
+      <div class="marquee">
+        <div class="marquee__inner">
+          <span>HIGH PERFORMANCE</span> <span class="dot">•</span>
+          <span>DATA DRIVEN</span> <span class="dot">•</span>
+          <span>COACHING</span> <span class="dot">•</span>
+          <span>PRECISION</span> <span class="dot">•</span>
+          <span>HIGH PERFORMANCE</span> <span class="dot">•</span>
+          <span>DATA DRIVEN</span> <span class="dot">•</span>
+          <span>COACHING</span> <span class="dot">•</span>
+          <span>PRECISION</span> <span class="dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILES GRID -->
+    <section class="profiles">
+      <div class="profiles__header">
+        <h2>Desenhado para quem não quer perder tempo.</h2>
+      </div>
+      <div class="profiles__grid">
+        <div class="profile-card fade-up">
+          <div class="profile-card__inner">
+            <h3>Quem estagnou</h3>
+            <p>Você perdeu peso, mas parou. O Integr8 detecta o platô e faz o ajuste exato no metabolismo.</p>
+          </div>
+        </div>
+        <div class="profile-card fade-up" data-delay="0.1">
+          <div class="profile-card__inner">
+            <h3>Rotina Caótica</h3>
+            <p>Trabalho intenso e viagens. O programa se adapta ao caos, mantendo o resultado independente da sua semana.</p>
+          </div>
+        </div>
+        <div class="profile-card fade-up" data-delay="0.2">
+          <div class="profile-card__inner">
+            <h3>Sono Ruim</h3>
+            <p>Falta de sono sabota a dieta. Monitoramos sua recuperação para ajustar o volume de treino nos piores dias.</p>
+          </div>
+        </div>
+        <div class="profile-card fade-up" data-delay="0.3">
+          <div class="profile-card__inner">
+            <h3>Perda de Gordura Real</h3>
+            <p>Não é só sobre peso na balança. O objetivo é manter sua massa muscular enquanto a gordura derrete.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section" id="cta">
+      <div class="cta__bg"></div>
+      <div class="cta__content">
+        <h2 class="fade-up">Seu resultado começa quando o sistema começa a <em>te ouvir</em>.</h2>
+        <a href="#" class="btn-primary magnetic fade-up" data-strength="60" data-delay="0.2">
+          <span class="btn-text">Começar o Protocolo</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Custom Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>
