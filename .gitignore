@@ -1,0 +1,8 @@
+.gemini/
+.antigravity/
+node_modules/
+.DS_Store
+.vercel/
+dist/
+build/
+*.log

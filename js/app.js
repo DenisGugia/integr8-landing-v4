@@ -18,25 +18,8 @@ requestAnimationFrame(raf);
 // GSAP integration with Lenis
 gsap.registerPlugin(ScrollTrigger);
 
-// Custom Cursor
-const cursor = document.querySelector('.cursor');
-const magneticElements = document.querySelectorAll('.magnetic');
-
-document.addEventListener('mousemove', (e) => {
-  gsap.to(cursor, {
-    x: e.clientX,
-    y: e.clientY,
-    duration: 0.1,
-    ease: "power2.out"
-  });
-});
-
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-});
-
 // Magnetic Buttons
+const magneticElements = document.querySelectorAll('.magnetic');
 magneticElements.forEach((elem) => {
   elem.addEventListener("mousemove", function(e) {
     const position = elem.getBoundingClientRect();
@@ -82,21 +65,7 @@ magneticElements.forEach((elem) => {
   });
 });
 
-// Hero 3D Tilt
-const heroVisual = document.querySelector('.hero__mockup-wrapper');
-if (heroVisual) {
-  document.addEventListener('mousemove', (e) => {
-    const x = (window.innerWidth / 2 - e.clientX) / 25;
-    const y = (window.innerHeight / 2 - e.clientY) / 25;
-    
-    gsap.to(heroVisual, {
-      rotationY: -x,
-      rotationX: y,
-      duration: 1,
-      ease: 'power2.out'
-    });
-  });
-}
+// Hero 3D Tilt removed as requested
 
 // Fade Up Animations
 gsap.utils.toArray('.fade-up').forEach(element => {
@@ -114,20 +83,7 @@ gsap.utils.toArray('.fade-up').forEach(element => {
   });
 });
 
-// Marquee Animation
-const marquee = document.querySelector('.marquee__inner');
-if (marquee) {
-  gsap.to(marquee, {
-    xPercent: -50,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".statement",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-    }
-  });
-}
+// Marquee Animation is handled by CSS keyframes
 
 // Sticky Features Tracker
 const featuresNav = document.querySelectorAll('.features__nav-item');
@@ -156,3 +112,127 @@ window.addEventListener('scroll', () => {
     navbar.classList.remove('scrolled');
   }
 });
+
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const iconMoon = document.querySelector('.icon-moon');
+const iconSun = document.querySelector('.icon-sun');
+
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  if (theme === 'light') {
+    iconMoon.style.display = 'none';
+    iconSun.style.display = 'block';
+  } else {
+    iconMoon.style.display = 'block';
+    iconSun.style.display = 'none';
+  }
+}
+
+// Initialize theme
+const savedTheme = localStorage.getItem('theme');
+const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+if (savedTheme) {
+  setTheme(savedTheme);
+} else if (systemPrefersLight) {
+  setTheme('light');
+} else {
+  setTheme('dark');
+}
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+});
+
+// Language Toggle (Placeholder for future i18n)
+const langToggle = document.getElementById('lang-toggle');
+langToggle.addEventListener('click', () => {
+  alert('Seletor de idiomas será implementado em breve para suportar EN/ES.');
+});
+
+// 3D Orbit Animation for Pillars
+const orbiters = document.querySelectorAll('.pillar-orbiter');
+const orbitRing = document.querySelector('.orbit-ring');
+
+if (orbiters.length > 0 && orbitRing) {
+  // Position the pillars in a circle with 3D tilts
+  const numPillars = orbiters.length;
+  const radiusX = window.innerWidth > 1024 ? 480 : 200; // Increased to 480 for larger orbit
+  const radiusZ = window.innerWidth > 1024 ? 150 : 80;  // Creates the elliptical depth perspective
+  
+  orbiters.forEach((orbiter, i) => {
+    const angle = (i / numPillars) * Math.PI * 2;
+    // Set initial position in 3D space
+    gsap.set(orbiter, {
+      rotationY: (angle * 180) / Math.PI,
+    });
+    
+    // Set the content to counter-rotate so it faces the screen
+    const content = orbiter.querySelector('.pillar-content');
+    gsap.set(content, {
+      xPercent: -50,
+      yPercent: -50,
+      z: radiusX, // Push out to edge of ring
+      rotationY: -(angle * 180) / Math.PI // Counter rotate
+    });
+  });
+
+  // Create the continuous rotation timeline
+  const orbitTl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
+  
+  // Rotate the ring, tilting it slightly to look like Saturn's rings
+  gsap.set(orbitRing, { rotationX: -15, rotationZ: 5, xPercent: -50, yPercent: -50 });
+  
+  // Counter-tilt the couple so they stay upright while inside the tilted ring
+  gsap.set('.orbit-center', { rotationX: 15, rotationZ: -5, xPercent: -50, yPercent: -50 });
+  
+  orbitTl.to(orbiters, {
+    rotationY: "+=360",
+    duration: 30,
+  }, 0);
+
+
+  
+  // Counter rotate the content to keep text readable
+  orbiters.forEach(orbiter => {
+    const content = orbiter.querySelector('.pillar-content');
+    orbitTl.to(content, {
+      rotationY: "-=360",
+      duration: 30,
+      duration: 30,
+    }, 0);
+  });
+}
+
+// Hero Notification Animation
+const heroNotif = document.querySelector('.hero__notification');
+if (heroNotif) {
+  const notifTl = gsap.timeline({ delay: 1 });
+  
+  notifTl.to(heroNotif, {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    duration: 1,
+    ease: "back.out(1.7)"
+  });
+  
+  // Note: using camelCase for GSAP properties is safer in some environments
+  notifTl.to('.notif__icon svg path', {
+    strokeDashoffset: 0,
+    duration: 0.6,
+    ease: "power2.out"
+  }, "-=0.3");
+  
+  // Continuous floating animation
+  gsap.to(heroNotif, {
+    y: "-=15",
+    duration: 3,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+  });
+}

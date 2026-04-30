@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,21 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/main.css">
-  
+
   <!-- Lenis & GSAP -->
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
+
 <body class="dark-theme">
 
-  <!-- Custom Cursor -->
-  <div class="cursor"></div>
 
   <!-- Noise Overlay -->
   <div class="noise-overlay"></div>
@@ -34,10 +36,38 @@
       </a>
       <div class="navbar__links">
         <a href="#metodo" class="magnetic" data-strength="15">O Método</a>
-        <a href="#app" class="magnetic" data-strength="15">App</a>
-        <a href="#cta" class="btn-magnetic" data-strength="40">
-          <span class="btn-text">Iniciar Protocolo</span>
-        </a>
+        <a href="#resultados" class="magnetic" data-strength="15">Resultados</a>
+        <a href="#coach" class="magnetic" data-strength="15">Coach</a>
+
+        <!-- Controls (Theme & Lang) -->
+        <div class="navbar__controls">
+          <button id="theme-toggle" class="control-btn magnetic" aria-label="Toggle Dark/Light Mode">
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <button id="lang-toggle" class="control-btn magnetic" aria-label="Change Language">
+            PT <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <a href="#checkout" class="btn btn--primary">Comece Agora</a>
       </div>
     </div>
   </header>
@@ -49,24 +79,104 @@
       <div class="hero__content">
         <p class="hero__kicker fade-up">MÉTODO INTEGR8</p>
         <h1 class="hero__title">
-          <span class="line"><span class="word">Seu</span> <span class="word">corpo</span> <span class="word">evolui.</span></span>
-          <span class="line text-gradient"><span class="word">O</span> <span class="word">método</span> <span class="word">se</span> <span class="word">adapta.</span></span>
+          <span class="line"><span class="word">Seu</span> <span class="word">corpo</span> <span
+              class="word">evolui.</span></span>
+          <span class="line"><span class="word">O</span> <span class="word">método</span> <span class="word">se</span>
+            <span class="word">adapta.</span></span>
         </h1>
         <p class="hero__subtitle fade-up" data-delay="0.2">
-          Treino, Nutrição e Monitoramento contínuo. Tudo guiado por dados, ajustado pelo coach e focado em resultados reais.
+          A maioria dos programas falha porque são estáticos. O seu corpo é dinâmico. O Integr8 monitora 8 pilares da
+          sua rotina para recalibrar seu plano em tempo real. O resultado nunca para de vir.
         </p>
         <div class="hero__cta-wrapper fade-up" data-delay="0.4">
-          <a href="#cta" class="btn-primary magnetic" data-strength="50">
-            <span class="btn-text">Descubra o Integr8</span>
+          <a href="#oferta" class="btn-primary magnetic" data-strength="50">
+            <span class="btn-text">Começar Minha Transformação</span>
           </a>
         </div>
       </div>
-      
+
       <!-- Hero Mockup 3D Tilt -->
       <div class="hero__visual fade-up" data-delay="0.6">
         <div class="hero__mockup-wrapper" data-tilt>
           <div class="mockup-glow"></div>
-          <img src="assets/images/hero_mockup.png" alt="App Integr8" class="hero__mockup-img">
+          <img src="assets/images/hero_mockup.jpeg" alt="App Integr8" class="hero__mockup-img" fetchpriority="high">
+
+          <!-- Floating Glassmorphism Notification -->
+          <div class="hero__notification" id="hero-notif">
+            <div class="notif__icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="notif__content">
+              <p class="notif__title" data-i18n="hero_notif_title">Treino Concluído!</p>
+              <p class="notif__subtitle" data-i18n="hero_notif_subtitle">Dados enviados ao Coach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE STATEMENT -->
+    <div class="statement">
+      <div class="marquee">
+        <div class="marquee__inner">
+          <div class="marquee__group">
+            <span class="text-gradient">O app registra.</span>
+            <span class="text-gradient">Sua rotina continua.</span>
+          </div>
+          <div class="marquee__group">
+            <span class="text-gradient">O app registra.</span>
+            <span class="text-gradient">Sua rotina continua.</span>
+          </div>
+          <div class="marquee__group">
+            <span class="text-gradient">O app registra.</span>
+            <span class="text-gradient">Sua rotina continua.</span>
+          </div>
+          <div class="marquee__group">
+            <span class="text-gradient">O app registra.</span>
+            <span class="text-gradient">Sua rotina continua.</span>
+          </div>
+          <div class="marquee__group">
+            <span class="text-gradient">O app registra.</span>
+            <span class="text-gradient">Sua rotina continua.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDENTIFICATION & PARADIGM -->
+    <section class="story-section">
+      <div class="story__container">
+        <h2 class="section-title fade-up">
+          <span class="line">O esforço sempre foi seu.</span>
+          <span class="line">O que faltou foi o sistema certo.</span>
+        </h2>
+        <p class="section-desc fade-up">Dietas genéricas, planilhas de treino, vídeos aleatórios — você já tentou de
+          tudo. Funciona por um tempo, até a rotina apertar. O problema não é a sua disciplina. O problema é depender de
+          motivação em vez de depender de um sistema. O Integr8 junta a precisão matemática dos dados com o olhar
+          clínico de um coach especialista.</p>
+
+        <div class="paradigm__grid">
+          <div class="paradigm__card glass-panel fade-up">
+            <span class="eyebrow">A armadilha comum</span>
+            <h3>Força de vontade nua</h3>
+            <ul>
+              <li>Depende de motivação diária para existir.</li>
+              <li>Quando o dia desanda, o plano quebra.</li>
+              <li>Funciona por três semanas. Falha por seis meses.</li>
+            </ul>
+          </div>
+          <div class="paradigm__card glass-panel accent fade-up" data-delay="0.2">
+            <span class="eyebrow">A abordagem Elite</span>
+            <h3>Sistema Inteligente</h3>
+            <ul>
+              <li>Reduz o atrito entre o que você quer fazer e consegue fazer.</li>
+              <li>O sistema acompanha sua jornada; o coach ajusta a rota.</li>
+              <li>Absorve o caos da sua rotina em vez de ignorá-lo.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -74,63 +184,135 @@
     <!-- STICKY SCROLL SECTION (APP FEATURES) -->
     <section class="features" id="metodo">
       <div class="features__container">
-        
         <!-- Pinned Left Side -->
         <div class="features__left">
           <div class="features__sticky-content">
+            <span class="eyebrow">Como Funciona</span>
             <h2 class="features__title">A precisão que você não tinha.</h2>
-            <p class="features__desc">O problema nunca foi a sua disciplina. Foi a falta de um sistema que conectasse os pontos.</p>
-            
+            <p class="features__desc">O aplicativo entrega a prescrição exata. Vídeos dos movimentos, controle de carga
+              e progressão inteligente, tudo a um toque na tela.</p>
+
             <div class="features__nav">
-              <div class="features__nav-item active" data-target="0">01. Treino Guiado</div>
-              <div class="features__nav-item" data-target="1">02. Nutrição Dinâmica</div>
-              <div class="features__nav-item" data-target="2">03. Monitoramento</div>
+              <button type="button" class="features__nav-item active" data-target="0">01. Treino Direcionado</button>
+              <button type="button" class="features__nav-item" data-target="1">02. Nutrição sem Prisões</button>
+              <button type="button" class="features__nav-item" data-target="2">03. O Fim da Suposição</button>
             </div>
           </div>
         </div>
 
         <!-- Scrolling Right Side -->
         <div class="features__right">
-          <div class="features__card" id="card-0">
+          <div class="features__card glass-panel" id="card-0">
             <div class="card__glow"></div>
-            <img src="assets/images/app_training.png" alt="Treino">
+            <img src="assets/images/app_training.png" alt="Interface de Treino do App Integr8" loading="lazy">
             <div class="card__content">
               <h3>Treino que evolui com você</h3>
-              <p>O aplicativo entrega a prescrição exata. Vídeos dos movimentos, controle de carga e progressão inteligente.</p>
+              <p>Cada sessão está programada com métricas claras. Você registra a carga e o sistema rastreia sua
+                evolução. Teve um dia corrido? O programa tem níveis de intensidade para que você não zere o dia.</p>
             </div>
           </div>
-          <div class="features__card" id="card-1">
+          <div class="features__card glass-panel" id="card-1">
             <div class="card__glow"></div>
-            <img src="assets/images/app_nutrition.png" alt="Nutrição">
+            <img src="assets/images/app_nutrition.png" alt="Interface de Nutrição do App Integr8" loading="lazy">
             <div class="card__content">
-              <h3>Nutrição que você consegue manter</h3>
-              <p>Sem dietas genéricas. Você registra as refeições, e o coach faz ajustes finos para quebrar platôs sem restrições absurdas.</p>
+              <h3>Comer bem sem inventar cardápio</h3>
+              <p>Sem listas proibidas. O plano é montado sobre a sua realidade. Você registra o que consome, e o coach
+                lê os dados para calibrar os ponteiros. Você foca em viver, nós focamos na matemática.</p>
             </div>
           </div>
-          <div class="features__card" id="card-2">
+          <div class="features__card glass-panel" id="card-2">
             <div class="card__glow"></div>
-            <img src="assets/images/app_stats.png" alt="Monitoramento">
+            <img src="assets/images/app_stats.png" alt="Gráficos de Monitoramento do App Integr8" loading="lazy">
             <div class="card__content">
-              <h3>Dados em tempo real</h3>
-              <p>Integração com smartwatch para cruzar dados de sono, atividade e recuperação. A métrica certa na hora certa.</p>
+              <h3>O app coleta. O Coach cuida.</h3>
+              <p>O que você vê: gráficos luxuosos confirmando que seu corpo está mudando. O que o coach vê: os sinais
+                invisíveis que dizem exatamente quando acelerar e quando frear para que você nunca estagne.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MARQUEE / STATEMENT -->
-    <section class="statement">
-      <div class="marquee">
-        <div class="marquee__inner">
-          <span>HIGH PERFORMANCE</span> <span class="dot">•</span>
-          <span>DATA DRIVEN</span> <span class="dot">•</span>
-          <span>COACHING</span> <span class="dot">•</span>
-          <span>PRECISION</span> <span class="dot">•</span>
-          <span>HIGH PERFORMANCE</span> <span class="dot">•</span>
-          <span>DATA DRIVEN</span> <span class="dot">•</span>
-          <span>COACHING</span> <span class="dot">•</span>
-          <span>PRECISION</span> <span class="dot">•</span>
+    <!-- 8 PILLARS (3D ORBIT) -->
+    <section class="pillars" id="pilares">
+      <div class="pillars__inner">
+        <h2 class="section-title text-center fade-up">
+          <span class="line">8 pilares monitorados.</span>
+          <span class="line">Um único ecossistema.</span>
+        </h2>
+        <p class="section-desc text-center fade-up">Seus treinos são apenas uma pequena parte do seu dia. O que acontece
+          nas outras restantes é o que determina seus resultados. O app integra todos os seus dados para que você foque
+          apenas em viver.</p>
+
+        <div class="orbit-container fade-up" data-delay="0.2">
+          <!-- Orbiting Pillars -->
+          <div class="orbit-ring">
+            <!-- Central Figures moved inside the ring to force correct 3D intersection -->
+            <div class="orbit-center">
+              <div class="orbit-center-glow"></div>
+              <!-- Placeholder for a transparent PNG of a man and woman looking at their phones with energy -->
+              <img src="assets/images/center_couple.png" alt="Pessoas usando Integr8" class="center-img"
+                onerror="this.src='https://via.placeholder.com/200x300?text=Casal+Central'">
+            </div>
+            
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 12V2" />
+                  <path d="M5 12a7 7 0 1 0 14 0c0-2.5-2-4.5-4.5-4.5S10 10 10 12" />
+                  <path d="M10 12c0-2 2-2 2-2s2 0 2 2" />
+                </svg>
+                <span>Treino</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+                <span>Nutrição</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/><path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/><path d="M16 17h4"/><path d="M4 13h4"/></svg>
+                <span>Passos</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                <span>Hidratação</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M12 10v3"/><path d="M3 13h18"/></svg>
+                <span>Pesagem</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                <span>Fotos</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="9" x="2" y="7" rx="2" />
+                  <path d="M7 7v4" />
+                  <path d="M12 7v4" />
+                  <path d="M17 7v4" />
+                </svg>
+                <span>Medidas</span>
+              </div>
+            </div>
+            <div class="pillar-orbiter">
+              <div class="pillar-content">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                <span>Sono</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -138,49 +320,215 @@
     <!-- PROFILES GRID -->
     <section class="profiles">
       <div class="profiles__header">
-        <h2>Desenhado para quem não quer perder tempo.</h2>
+        <h2 class="fade-up">Desenhado para quem exige resultados absolutos.</h2>
       </div>
       <div class="profiles__grid">
-        <div class="profile-card fade-up">
+        <div class="profile-card glass-panel fade-up">
           <div class="profile-card__inner">
-            <h3>Quem estagnou</h3>
-            <p>Você perdeu peso, mas parou. O Integr8 detecta o platô e faz o ajuste exato no metabolismo.</p>
+            <h3>O Platô Inquebrável</h3>
+            <p>Você emagreceu, mas o corpo parou de responder. Detectamos o platô e ajustamos seu metabolismo sem cortes
+              brutais de calorias.</p>
           </div>
         </div>
-        <div class="profile-card fade-up" data-delay="0.1">
+        <div class="profile-card glass-panel fade-up" data-delay="0.1">
           <div class="profile-card__inner">
-            <h3>Rotina Caótica</h3>
-            <p>Trabalho intenso e viagens. O programa se adapta ao caos, mantendo o resultado independente da sua semana.</p>
+            <h3>A Rotina Caótica</h3>
+            <p>Trabalho intenso, reuniões e jet lag. O programa se adapta ao caos, mantendo a performance e a estética,
+              independente de onde você esteja.</p>
           </div>
         </div>
-        <div class="profile-card fade-up" data-delay="0.2">
+        <div class="profile-card glass-panel fade-up" data-delay="0.2">
           <div class="profile-card__inner">
-            <h3>Sono Ruim</h3>
-            <p>Falta de sono sabota a dieta. Monitoramos sua recuperação para ajustar o volume de treino nos piores dias.</p>
+            <h3>O Sabotador Invisível</h3>
+            <p>Falta de sono sabota a dieta e a hipertrofia. Monitoramos sua recuperação profunda e calibramos os
+              treinos para evitar *burnout* físico.</p>
           </div>
         </div>
-        <div class="profile-card fade-up" data-delay="0.3">
+        <div class="profile-card glass-panel fade-up" data-delay="0.3">
           <div class="profile-card__inner">
-            <h3>Perda de Gordura Real</h3>
-            <p>Não é só sobre peso na balança. O objetivo é manter sua massa muscular enquanto a gordura derrete.</p>
+            <h3>A Queima Cirúrgica</h3>
+            <p>Esqueça perder peso. O foco é preservar a sua massa muscular construída com suor enquanto a gordura
+              derrete com eficiência matemática.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCENARIOS -->
+    <section class="scenarios" id="resultados">
+      <div class="scenarios__inner">
+        <h2 class="section-title fade-up">
+          <span class="line">Onde os métodos genéricos falham,</span>
+          <span class="line">nós operamos.</span>
+        </h2>
+        <div class="scenarios__grid">
+          <div class="scenario__card glass-panel fade-up">
+            <p class="situation">"Viajou por 10 dias. Voltou 1,2 kg mais pesado."</p>
+            <p class="action">Média móvel de 15 dias mostra tendência de longo prazo estável. Conclusão técnica:
+              retenção hídrica pura. Nenhuma caloria é cortada.</p>
+            <p class="result">Em 5 dias o corpo desincha e o peso cai abaixo do patamar anterior.</p>
+          </div>
+          <div class="scenario__card glass-panel fade-up" data-delay="0.1">
+            <p class="situation">"Final de semana desandou. Segunda com culpa."</p>
+            <p class="action">A análise de dados mostra que o excesso foi de apenas 400 kcal. No espectro da semana, o
+              estrago é estatisticamente nulo.</p>
+            <p class="result">Retorno ao protocolo sem dietas de desintoxicação ou punições. Você segue evoluindo.</p>
+          </div>
+          <div class="scenario__card glass-panel fade-up" data-delay="0.2">
+            <p class="situation">"Dormindo 5 horas por noite. Fome insaciável."</p>
+            <p class="action">O coach cruza os gráficos, bloqueia mudanças na dieta e força protocolos de higiene do
+              sono primeiro.</p>
+            <p class="result">A grelina (hormônio da fome) estabiliza. A dieta volta a ficar fácil de seguir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COACH -->
+    <section class="coach" id="coach">
+      <div class="coach__inner">
+        <div class="coach__photo-wrapper fade-up">
+          <div class="mockup-glow"></div>
+          <img src="assets/images/coach_portrait.jpeg" alt="Denis Gugia - Especialista em Fisiologia" class="coach__img"
+            loading="lazy">
+        </div>
+        <div class="coach__content fade-up" data-delay="0.2">
+          <span class="eyebrow">A Inteligência Humana</span>
+          <h2>Denis Gugia</h2>
+          <p>"Um aplicativo bonito não gera hipertrofia nem queima gordura. Quem faz isso é o controle técnico. Eu
+            analiso seus gráficos, prescrevo ajustes milimétricos e encontro a saída tática quando a sua rotina tenta
+            destruir a dieta."</p>
+          <p>"O objetivo final não é te manter refém de mim. É blindar o seu corpo a um ponto em que você domine a sua
+            própria fisiologia. Meu trabalho é te entregar os dados e o caminho."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEPS (ONBOARDING) -->
+    <section class="steps" id="onboarding">
+      <div class="steps__inner">
+        <h2 class="section-title text-center fade-up">Acesso ao método em 3 passos</h2>
+        <div class="steps__grid">
+          <div class="step-card glass-panel fade-up">
+            <span class="step-num text-gradient">01</span>
+            <h3>Assine e Baixe</h3>
+            <p>Garanta seu protocolo e ganhe acesso imediato ao App Integr8 (iOS e Android).</p>
+          </div>
+          <div class="step-card glass-panel fade-up" data-delay="0.1">
+            <span class="step-num text-gradient">02</span>
+            <h3>Mapeamento Base</h3>
+            <p>Responda ao formulário clínico de 5 minutos no app para desenharmos seu ponto de partida.</p>
+          </div>
+          <div class="step-card glass-panel fade-up" data-delay="0.2">
+            <span class="step-num text-gradient">03</span>
+            <h3>Execução Direcionada</h3>
+            <p>Seu plano de alta performance aparece na tela. Você executa, nós calibramos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER -->
+    <section class="offer" id="oferta">
+      <div class="offer__inner">
+        <h2 class="section-title text-center fade-up">
+          <span class="line">Tecnologia Elite.</span>
+          <span class="line">Preço Lógico.</span>
+        </h2>
+        <div class="offer__card glass-panel fade-up">
+          <div class="offer__header">
+            <h3>Protocolo INTEGR8</h3>
+            <div class="price">
+              <span class="currency">CAD</span>
+              <span class="amount">$49</span>
+              <span class="cents">.90</span>
+              <span class="period">/mês</span>
+            </div>
+            <p class="cycle">Por menos de <strong>$1.70 CAD por dia</strong>. O equivalente a um café para ter um coach
+              e um sistema rastreando seus 8 pilares 24/7.<br><br><span
+                style="font-size:0.9rem; color:var(--text-secondary);">*Cobrado em ciclo de 16 semanas (CAD $199.60)
+                para garantir a adaptação metabólica.</span></p>
+          </div>
+
+          <div class="offer__stack">
+            <p class="stack-title">O que você leva no momento em que confirmar:</p>
+            <ul class="offer__features">
+              <li><span class="text-gradient">✦</span> <strong>App Integr8 Pro</strong> (Seu QG de comando no bolso)
+              </li>
+              <li><span class="text-gradient">✦</span> <strong>Treino Adaptativo</strong> (Ajustado para Academia ou
+                Casa)</li>
+              <li><span class="text-gradient">✦</span> <strong>Protocolo Nutricional Dinâmico</strong> (Sem fome e sem
+                terrorismo)</li>
+              <li><span class="text-gradient">✦</span> <strong>Acompanhamento Pessoal</strong> (Ajustes de rota direto
+                pelo Coach)</li>
+            </ul>
+          </div>
+
+          <a href="#" class="btn-primary magnetic" data-strength="40">
+            <span class="btn-text">Quero Iniciar Meu Protocolo</span>
+          </a>
+          <p class="guarantee"><strong>Risco Zero:</strong> Garantia Incondicional de 21 dias. Se o sistema não fizer
+            sentido para a sua rotina, o seu dinheiro volta. Sem burocracia, sem perguntas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <div class="faq__inner">
+        <h2 class="section-title text-center fade-up">Perguntas Frequentes</h2>
+        <div class="faq__list fade-up">
+          <div class="faq__item">
+            <h4>Preciso obrigatoriamente ir à academia?</h4>
+            <p>O programa otimiza os ganhos com equipamentos de academia, mas se a sua rotina exige treinar em casa, o
+              app adapta os vetores de força para o que você tem disponível (peso do corpo ou halteres).</p>
+          </div>
+          <div class="faq__item">
+            <h4>Moro fora do Canadá/Brasil. O fuso horário atrapalha?</h4>
+            <p>Zero impacto. Tudo acontece assincronamente pelo app. Eu monitoro seus dados armazenados na nuvem e deixo
+              as correções prontas para quando você acordar, onde quer que você esteja.</p>
+          </div>
+          <div class="faq__item">
+            <h4>Vou ficar refém do WhatsApp?</h4>
+            <p>Não. Nós abolimos mensagens perdidas. Toda a comunicação, ajustes de dieta e correções de movimento de
+              treino são centralizadas de forma criptografada e segura diretamente no chat do aplicativo Integr8.</p>
+          </div>
+          <div class="faq__item">
+            <h4>O plano de 16 semanas me "prende"?</h4>
+            <p>Fisiologia humana leva tempo para consolidar novos caminhos neurais e metabólicos. O ciclo de 16 semanas
+              existe para proteger o seu resultado, mas se dentro dos primeiros 21 dias você não se adaptar, o
+              cancelamento e estorno é imediato.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="cta-section" id="cta">
+    <section class="cta-section">
       <div class="cta__bg"></div>
       <div class="cta__content">
-        <h2 class="fade-up">Seu resultado começa quando o sistema começa a <em>te ouvir</em>.</h2>
-        <a href="#" class="btn-primary magnetic fade-up" data-strength="60" data-delay="0.2">
+        <h2 class="fade-up">Seu resultado começa quando o sistema começa a <em class="text-gradient">te ouvir</em>.</h2>
+        <a href="#oferta" class="btn-primary magnetic fade-up" data-strength="60" data-delay="0.2">
           <span class="btn-text">Começar o Protocolo</span>
         </a>
       </div>
     </section>
   </main>
 
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">INTEGR8</div>
+      <div class="footer__links">
+        <a href="#">Termos</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Instagram</a>
+      </div>
+      <div class="footer__copy">© 2026 INTEGR8. Engenhado para Evoluir.</div>
+    </div>
+  </footer>
+
   <!-- Custom Scripts -->
   <script src="js/app.js"></script>
 </body>
+
 </html>
