@@ -1,0 +1,35 @@
+/* ── SCENARIOS ── */
+.scenarios {
+  padding: var(--pad-section);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.scenarios__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+}
+.scenario__card {
+  padding: 40px;
+}
+.scenario__card .situation {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.scenario__card .action {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.scenario__card .result {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .scenarios__grid {
+    grid-template-columns: 1fr;
+  }
+}

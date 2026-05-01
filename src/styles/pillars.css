@@ -1,0 +1,116 @@
+/* ── PILLARS ORBIT ── */
+.pillars {
+  padding: var(--pad-section);
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+  overflow: hidden;
+}
+.pillars__inner {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding-top: 150px;
+}
+.orbit-container {
+  position: relative;
+  width: 100%;
+  height: 45rem;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30rem;
+  height: 45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+.orbit-center-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  filter: blur(20px);
+  transform: translateZ(-50px);
+}
+.center-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(2.0) translateY(10%) translateZ(0px);
+}
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60rem;
+  height: 60rem;
+  transform-style: preserve-3d;
+}
+.pillar-orbiter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  margin-top: -30rem;
+  margin-left: -30rem;
+  transform-style: preserve-3d;
+}
+.pillar-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--border-glass);
+  border-radius: 6.25rem;
+  background: var(--bg-panel);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  transition: all 0.4s;
+}
+.pillar-content:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(43, 156, 147, 0.1);
+}
+.pillar-content svg {
+  color: var(--accent);
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: all 0.4s;
+}
+.pillar-content:hover svg {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .orbit-container {
+    height: 25rem;
+  }
+  .orbit-ring {
+    width: 25rem;
+    height: 25rem;
+  }
+  .pillar-orbiter {
+    margin-top: -12.5rem;
+    margin-left: -12.5rem;
+  }
+  .orbit-center {
+    width: 9.375rem;
+  }
+}

@@ -1,0 +1,29 @@
+/* ── CTA SECTION ── */
+.cta-section {
+  padding: 200px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta__bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  filter: blur(80px);
+}
+.cta-section h2 {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+}
+.cta-section em {
+  font-style: italic;
+}

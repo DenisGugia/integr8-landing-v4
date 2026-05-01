@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+import Hero from '../sections/Hero.astro';
+import Marquee from '../sections/Marquee.astro';
+import Story from '../sections/Story.astro';
+import Features from '../sections/Features.astro';
+import Pillars from '../sections/Pillars.astro';
+import Profiles from '../sections/Profiles.astro';
+import Scenarios from '../sections/Scenarios.astro';
+import Coach from '../sections/Coach.astro';
+import Steps from '../sections/Steps.astro';
+import Offer from '../sections/Offer.astro';
+import FAQ from '../sections/FAQ.astro';
+import FinalCTA from '../sections/FinalCTA.astro';
+---
+
+<Layout title="Integr8 | O Método Magnético">
+  <Navbar />
+  <main>
+    <Hero />
+    <Marquee />
+    <Story />
+    <Features />
+    <Pillars />
+    <Profiles />
+    <Scenarios />
+    <Coach />
+    <Steps />
+    <Offer />
+    <FAQ />
+    <FinalCTA />
+  </main>
+  <Footer />
+</Layout>

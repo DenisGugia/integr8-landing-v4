@@ -1,0 +1,42 @@
+---
+import '../styles/hero.css';
+---
+
+<section class="hero" id="hero">
+  <div class="hero__glow"></div>
+  <div class="hero__content">
+    <p class="hero__kicker fade-up">MÉTODO INTEGR8</p>
+    <h1 class="hero__title">
+      <span class="line"><span class="word">Seu</span> <span class="word">corpo</span> <span class="word">evolui.</span></span>
+      <span class="line"><span class="word">O</span> <span class="word">método</span> <span class="word">se</span> <span class="word">adapta.</span></span>
+    </h1>
+    <p class="hero__subtitle fade-up" data-delay="0.2">
+      A maioria dos programas falha porque são estáticos. O seu corpo é dinâmico. O Integr8 monitora 8 pilares da
+      sua rotina para recalibrar seu plano em tempo real. O resultado nunca para de vir.
+    </p>
+    <div class="hero__cta-wrapper fade-up" data-delay="0.4">
+      <a href="#oferta" class="btn-primary magnetic" data-strength="50">
+        <span class="btn-text">Começar Minha Transformação</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero__visual fade-up" data-delay="0.6">
+    <div class="hero__mockup-wrapper" data-tilt>
+      <div class="mockup-glow"></div>
+      <img src="/assets/images/hero_mockup.jpeg" alt="App Integr8" class="hero__mockup-img" fetchpriority="high" />
+
+      <div class="hero__notification" id="hero-notif">
+        <div class="notif__icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="notif__content">
+          <p class="notif__title" data-i18n="hero_notif_title">Treino Concluído!</p>
+          <p class="notif__subtitle" data-i18n="hero_notif_subtitle">Dados enviados ao Coach.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+/* ── COACH ── */
+.coach {
+  padding: var(--pad-section);
+  background: var(--bg-dark);
+}
+.coach__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.coach__photo-wrapper {
+  position: relative;
+}
+.coach__img {
+  width: 100%;
+  border-radius: 24px;
+}
+.coach__content h2 {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  margin-bottom: 32px;
+}
+.coach__content p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .coach__inner {
+    grid-template-columns: 1fr;
+  }
+}

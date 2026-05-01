@@ -1,0 +1,40 @@
+/* ── PROFILES ── */
+.profiles {
+  padding: var(--pad-section);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.profiles__header h2 {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  max-width: 800px;
+  margin-bottom: 80px;
+  letter-spacing: -0.03em;
+}
+.profiles__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+.profile-card {
+  transition: background 0.4s;
+}
+.profile-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.profile-card h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.profile-card p {
+  color: var(--text-secondary);
+  font-size: 1.12rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .profiles__grid {
+    grid-template-columns: 1fr;
+  }
+}

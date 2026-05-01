@@ -1,0 +1,27 @@
+/* ── FAQ ── */
+.faq {
+  padding: var(--pad-section);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq__list {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.faq__item {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 32px;
+}
+.faq__item h4 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+.faq__item p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
