@@ -1,0 +1,12 @@
+﻿[build]
+  publish = "."
+  command = "echo Static site"
+
+[context.production]
+  command = "echo Static site"
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
