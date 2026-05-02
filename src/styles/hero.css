@@ -174,21 +174,72 @@
 }
 
 @media (max-width: 640px) {
+  /* ── STACKED LAYOUT: image top, content bottom ── */
   .hero {
-    padding: 0 1.5rem;
+    flex-direction: column;
+    height: auto;
     min-height: 100dvh;
-    align-items: flex-end;
-    padding-bottom: 4rem;
+    padding: 0;
+    padding-top: 64px;
+    overflow: visible;
+    align-items: stretch;
   }
+
+  /* Image section — visible at top, focused on subjects */
+  .hero__visual {
+    position: relative;
+    width: 100%;
+    height: 56vw;
+    min-height: 240px;
+    max-height: 300px;
+    z-index: 0;
+    order: -1;
+  }
+  .hero__mockup-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: none;
+    transform-style: flat;
+  }
+  .hero__mockup-img {
+    object-position: right 15%;
+  }
+  .mockup-glow {
+    display: none;
+  }
+
+  /* Content section — solid background, clean readability */
   .hero__content {
-    padding: 24px;
+    position: relative;
+    z-index: 1;
     max-width: 100%;
+    background: var(--bg-dark);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+    padding: 28px 24px 48px;
+    flex: 1;
+  }
+  [data-theme="light"] .hero__content {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+  }
+
+  .hero__glow {
+    display: none;
   }
   .hero__notification {
     display: none;
   }
+
+  /* Typography adjustments */
+  .hero__title {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+    margin-bottom: 20px;
+  }
   .hero__subtitle {
-    font-size: 1rem;
-    margin-bottom: 32px;
+    font-size: 0.95rem;
+    margin-bottom: 28px;
   }
 }
