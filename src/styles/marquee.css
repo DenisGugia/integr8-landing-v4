@@ -11,14 +11,17 @@
   width: 100vw;
   max-width: 100%;
   overflow-x: hidden;
-  transform: translateZ(0); /* force GPU layer so overflow clips animated child on iOS */
 }
 .marquee__inner {
   display: flex;
   width: max-content;
   flex-wrap: nowrap;
+  -webkit-animation: marquee 30s linear infinite;
   animation: marquee 30s linear infinite;
-  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .marquee__group {
   display: flex;
@@ -32,6 +35,10 @@
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1.1;
+}
+@-webkit-keyframes marquee {
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
 }
 @keyframes marquee {
   0% { transform: translateX(0); }
