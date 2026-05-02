@@ -11,6 +11,7 @@
   width: 100vw;
   max-width: 100%;
   overflow-x: hidden;
+  transform: translateZ(0); /* force GPU layer so overflow clips animated child on iOS */
 }
 .marquee__inner {
   display: flex;

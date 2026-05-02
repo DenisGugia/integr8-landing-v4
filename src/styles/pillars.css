@@ -122,19 +122,19 @@
     padding-top: 60px;
   }
   .orbit-container {
-    height: 18rem;
+    height: 22rem;
   }
   .orbit-ring {
-    width: 18rem;
-    height: 18rem;
+    width: 22rem;
+    height: 22rem;
   }
   .pillar-orbiter {
-    margin-top: -9rem;
-    margin-left: -9rem;
+    margin-top: -11rem;
+    margin-left: -11rem;
   }
   .orbit-center {
-    width: 6rem;
-    height: 18rem;
+    width: 8rem;
+    height: 22rem;
   }
   .pillar-content {
     font-size: 0.7rem;

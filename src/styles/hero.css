@@ -229,8 +229,17 @@
   .hero__glow {
     display: none;
   }
+
+  /* Reposition notification to bottom-center of the image on mobile */
   .hero__notification {
-    display: none;
+    display: flex;
+    top: auto;
+    right: auto;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    width: 11rem;
+    padding: 0.9rem 0.75rem;
   }
 
   /* Typography adjustments */

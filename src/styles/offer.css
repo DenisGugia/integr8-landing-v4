@@ -82,12 +82,19 @@
   .offer__card {
     padding: 32px 20px;
   }
+  .price {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 2px;
+  }
   .price .amount {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
   }
   .price .currency,
-  .price .cents {
-    font-size: 1.5rem;
+  .price .cents,
+  .price .period {
+    font-size: 1rem;
+    margin-top: 8px;
   }
   .offer__stack {
     width: 100%;

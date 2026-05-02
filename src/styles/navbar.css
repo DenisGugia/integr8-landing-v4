@@ -98,8 +98,24 @@
   .navbar {
     padding: 16px 24px;
   }
+  .navbar__inner {
+    justify-content: center;
+    position: relative;
+  }
+  .navbar__logo img {
+    height: 40px;
+  }
+  .navbar__controls {
+    position: absolute;
+    right: 56px;
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
   .navbar__hamburger {
     display: flex;
+    position: absolute;
+    right: 0;
   }
   .navbar__links {
     display: none;
@@ -121,12 +137,6 @@
   .navbar__links .btn--primary {
     margin-top: 8px;
     width: auto;
-  }
-  .navbar__controls {
-    border-left: none;
-    padding-left: 0;
-    margin-left: 0;
-    justify-content: center;
   }
 }
 
