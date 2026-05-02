@@ -21,6 +21,7 @@
   align-items: center;
   perspective: 2000px;
   transform-style: preserve-3d;
+  contain: layout style;
 }
 .orbit-center {
   position: absolute;
@@ -64,6 +65,7 @@
   margin-top: -30rem;
   margin-left: -30rem;
   transform-style: preserve-3d;
+  will-change: transform;
 }
 .pillar-content {
   position: absolute;

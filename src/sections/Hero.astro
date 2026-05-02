@@ -24,7 +24,9 @@ import '../styles/hero.css';
   <div class="hero__visual fade-up" data-delay="0.6">
     <div class="hero__mockup-wrapper" data-tilt>
       <div class="mockup-glow"></div>
-      <img src="/assets/images/hero_mockup.jpeg" alt="App Integr8" class="hero__mockup-img" fetchpriority="high" />
+      <img src="/assets/images/hero_mockup.jpeg" alt="App Integr8" class="hero__mockup-img"
+           fetchpriority="high" loading="eager" decoding="sync"
+           width="1920" height="1080" />
 
       <div class="hero__notification" id="hero-notif">
         <div class="notif__icon">

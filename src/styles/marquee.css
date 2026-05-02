@@ -17,6 +17,7 @@
   width: max-content;
   flex-wrap: nowrap;
   animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 .marquee__group {
   display: flex;
