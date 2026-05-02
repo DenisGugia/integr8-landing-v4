@@ -35,3 +35,12 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+@media (max-width: 640px) {
+  .statement {
+    padding: 3rem 0;
+  }
+  .marquee__group span {
+    font-size: 2rem;
+  }
+}

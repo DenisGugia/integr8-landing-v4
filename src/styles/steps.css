@@ -37,3 +37,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .step-card {
+    padding: 24px;
+  }
+  .step-num {
+    font-size: 2.5rem;
+  }
+}

@@ -32,3 +32,19 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 32px 24px;
+  }
+  .footer__inner {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  .footer__links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}

@@ -38,3 +38,16 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .profiles__header h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  .profiles__grid {
+    gap: 24px;
+  }
+  .profile-card h3 {
+    font-size: 1.5rem;
+  }
+}

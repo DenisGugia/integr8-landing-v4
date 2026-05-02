@@ -77,3 +77,20 @@
     padding: 32px 24px;
   }
 }
+
+@media (max-width: 640px) {
+  .offer__card {
+    padding: 32px 20px;
+  }
+  .price .amount {
+    font-size: 3.5rem;
+  }
+  .price .currency,
+  .price .cents {
+    font-size: 1.5rem;
+  }
+  .offer__stack {
+    width: 100%;
+    display: block;
+  }
+}

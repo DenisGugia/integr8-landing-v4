@@ -7,7 +7,12 @@ import '../styles/navbar.css';
     <a href="#" class="navbar__logo magnetic" data-strength="20">
       <img src="/assets/images/logo.png" alt="Integr8 Logo" />
     </a>
-    <div class="navbar__links">
+    <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="navbar__links" id="navbar-links">
       <a href="#metodo" class="magnetic" data-strength="15">O Método</a>
       <a href="#resultados" class="magnetic" data-strength="15">Resultados</a>
       <a href="#coach" class="magnetic" data-strength="15">Coach</a>
@@ -42,3 +47,24 @@ import '../styles/navbar.css';
     </div>
   </div>
 </header>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navbar-links');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = navLinks?.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  navLinks?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger?.classList.remove('open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

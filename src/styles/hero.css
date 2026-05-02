@@ -172,3 +172,23 @@
     font-size: 4rem;
   }
 }
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 0 1.5rem;
+    min-height: 100dvh;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+  }
+  .hero__content {
+    padding: 24px;
+    max-width: 100%;
+  }
+  .hero__notification {
+    display: none;
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
+}
