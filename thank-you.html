@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="ty_page_title">Bem-vindo ao INTEGR8 — Próximo passo</title>
+
+  <!-- GTM dataLayer push — thank you page -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'page_type': 'thank_you', 'page_title': 'Obrigado', 'site_section': 'post_purchase' });
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MBTJFZ7W');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Fonts — same as main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS (matches global.css) ──────────────────────── */
+    :root {
+      --bg-dark:        #0A0D14;
+      --bg-panel:       rgba(255, 255, 255, 0.03);
+      --border-glass:   rgba(255, 255, 255, 0.08);
+      --text-primary:   #FFFFFF;
+      --text-secondary: #D4D4D4;
+      --accent:         #4ECDC4;
+      --accent-glow:    rgba(78, 205, 196, 0.15);
+      --font-display:   'Syne', sans-serif;
+      --font-body:      'Inter', sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg-dark:        #F7F9FC;
+      --bg-panel:       rgba(0, 0, 0, 0.02);
+      --border-glass:   rgba(0, 0, 0, 0.08);
+      --text-primary:   #1A1F2B;
+      --text-secondary: #4A5568;
+      --accent:         #2B9C93;
+      --accent-glow:    rgba(43, 156, 147, 0.12);
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── EYEBROW ─────────────────────────────────────────────── */
+    .eyebrow {
+      display: block;
+      font-family: var(--font-body);
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────────── */
+    .navbar {
+      width: 100%;
+      padding: 20px 80px;
+      background: rgba(10, 13, 20, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-glass);
+      transition: background 0.4s;
+    }
+    [data-theme="light"] .navbar {
+      background: rgba(247, 249, 252, 0.85);
+    }
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    .navbar__logo img {
+      height: 32px;
+      pointer-events: none;
+    }
+    .navbar__controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .control-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .control-btn:hover { color: var(--accent); }
+    .control-btn svg { width: 20px; height: 20px; }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 16px 24px; }
+      .navbar__logo img { height: 40px; }
+    }
+
+    /* ── HERO CONFIRMATION ──────────────────────────────────── */
+    .hero-confirm {
+      position: relative;
+      padding: 100px 0 80px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-glass);
+      overflow: hidden;
+    }
+    /* Hero background image layer */
+    .hero-confirm__bg {
+      position: absolute;
+      inset: 0;
+      background-image: var(--hero-bg-url);
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.12;
+      transition: opacity 0.4s;
+    }
+    [data-theme="light"] .hero-confirm__bg { opacity: 0.07; }
+    /* gradient overlay so text stays readable */
+    .hero-confirm__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 90%);
+    }
+    [data-theme="light"] .hero-confirm__bg::after {
+      background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 90%);
+    }
+    .hero-confirm .container { position: relative; z-index: 1; }
+
+    .check-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent) 0%, #3BA89E 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 36px;
+      box-shadow: 0 0 0 16px rgba(78, 205, 196, 0.08);
+      animation: pulse-ring 2.5s ease-out 0.4s infinite;
+    }
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0px rgba(78, 205, 196, 0.25); }
+      70%  { box-shadow: 0 0 0 22px rgba(78, 205, 196, 0); }
+      100% { box-shadow: 0 0 0 0px rgba(78, 205, 196, 0); }
+    }
+    .check-icon {
+      width: 32px;
+      height: 32px;
+      stroke: #fff;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .check-icon path {
+      stroke-dasharray: 40;
+      stroke-dashoffset: 40;
+      animation: draw-check 0.5s ease-out 0.2s forwards;
+    }
+    @keyframes draw-check { to { stroke-dashoffset: 0; } }
+
+    .hero-confirm h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .hero-confirm p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── NEXT STEP ──────────────────────────────────────────── */
+    .next-step {
+      padding: 72px 0;
+      background: rgba(78, 205, 196, 0.03);
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .next-step h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4.5vw, 40px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .next-step p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    /* CTA button — matches global.css .btn-primary */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--text-primary);
+      color: var(--bg-dark);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+    .btn-primary:hover::before { transform: translateY(0); }
+    .btn-primary:hover { color: #fff; }
+    .btn-primary svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-primary span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .urgency-note {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    [data-theme="light"] .urgency-note { color: rgba(0, 0, 0, 0.35); }
+    .urgency-note::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    /* ── WHAT YOU HAVE ──────────────────────────────────────── */
+    .what-you-have {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .what-you-have h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
+    }
+    .included-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .included-list li {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      align-items: start;
+      gap: 8px 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .included-list li:last-child { border-bottom: none; }
+    .item-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(78, 205, 196, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .item-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .item-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .item-text span {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── TIMELINE ───────────────────────────────────────────── */
+    .timeline-section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-glass);
+      background: rgba(255, 255, 255, 0.01);
+    }
+    [data-theme="light"] .timeline-section { background: rgba(0, 0, 0, 0.01); }
+    .timeline-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+    }
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent) 0%, var(--border-glass) 100%);
+    }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0 20px;
+      padding-bottom: 36px;
+      position: relative;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      border: 2px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .tl-dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .tl-dot span {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+    .tl-dot.active span { color: #0A0D14; }
+    .tl-content { padding-top: 10px; }
+    .tl-when {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .tl-content h3 {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .tl-content p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── APP DOWNLOAD ───────────────────────────────────────── */
+    .app-section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .app-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+    @media (max-width: 520px) {
+      .app-card { grid-template-columns: 1fr; }
+    }
+    .app-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      margin-top: 6px;
+    }
+    .app-info p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .store-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-glass);
+      color: var(--text-primary);
+      border-radius: 10px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    [data-theme="light"] .badge {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .badge:hover {
+      background: var(--accent-glow);
+      border-color: rgba(78, 205, 196, 0.3);
+    }
+    .badge svg { width: 16px; height: 16px; fill: currentColor; }
+    .app-visual {
+      width: 100px;
+      height: 100px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(78, 205, 196, 0.2);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .app-visual svg {
+      width: 44px;
+      height: 44px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      padding: 40px 80px;
+      border-top: 1px solid var(--border-glass);
+      background: var(--bg-dark);
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+    .footer-divider { margin: 0 8px; opacity: 0.35; }
+
+    @media (max-width: 640px) {
+      footer { padding: 32px 24px; }
+    }
+
+    /* ── ENTRY ANIMATIONS ───────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fade-up-in 0.55s ease-out forwards;
+    }
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.22s; }
+    .fade-up:nth-child(3) { animation-delay: 0.34s; }
+    .fade-up:nth-child(4) { animation-delay: 0.46s; }
+    @keyframes fade-up-in { to { opacity: 1; transform: translateY(0); } }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .hero-confirm { padding: 72px 0 56px; }
+      .next-step,
+      .what-you-have,
+      .timeline-section,
+      .app-section { padding: 56px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      .fade-up { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MBTJFZ7W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a href="https://integr8-hub.com/" class="navbar__logo">
+        <img src="assets/images/logo.png" alt="Integr8" />
+      </a>
+      <div class="navbar__controls">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="control-btn" aria-label="Toggle Dark/Light Mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <!-- Language Toggle -->
+        <button id="lang-toggle" class="control-btn" aria-label="Change Language">
+          PT <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BLOCO 1: CONFIRMAÇÃO -->
+  <section class="hero-confirm">
+    <!-- Background image — swap src when image is decided -->
+    <div class="hero-confirm__bg" id="hero-bg"></div>
+    <div class="container">
+      <div class="check-circle">
+        <svg class="check-icon" viewBox="0 0 24 24">
+          <path d="M5 12l5 5L19 7" />
+        </svg>
+      </div>
+      <div class="fade-up">
+        <p class="eyebrow" data-i18n="ty_eyebrow">Pagamento confirmado</p>
+      </div>
+      <div class="fade-up">
+        <h1 data-i18n="ty_hero_title">Você está dentro<br/>do Protocolo C.O.R.E. 8.</h1>
+      </div>
+      <div class="fade-up">
+        <p data-i18n="ty_hero_subtitle">O acesso está reservado. O próximo passo é simples — e acontece agora, pelo WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 2: PRÓXIMO PASSO IMEDIATO -->
+  <section class="next-step">
+    <div class="container">
+      <p class="eyebrow" data-i18n="ty_next_eyebrow">O que fazer agora</p>
+      <h2 data-i18n="ty_next_title">Entre em contato pelo WhatsApp<br/>para iniciar seu onboarding.</h2>
+      <p data-i18n="ty_next_desc">
+        Antes de qualquer protocolo entrar em vigor, vamos mapear sua rotina, seus objetivos e sua realidade.
+        É a partir disso que o programa funciona — não de uma planilha padrão.
+      </p>
+      <a
+        href="https://wa.me/12269617351?text=Ol%C3%A1%2C+acabei+de+me+inscrever+no+Protocolo+C.O.R.E.+8+e+quero+iniciar+o+onboarding."
+        class="btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-i18n-href="ty_whatsapp_url"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span data-i18n="ty_next_cta">Iniciar onboarding agora</span>
+      </a>
+      <p class="urgency-note" data-i18n="ty_next_note">Denis responde em até 24 horas nos dias úteis</p>
+    </div>
+  </section>
+
+  <!-- BLOCO 3: O QUE VOCÊ TEM -->
+  <section class="what-you-have">
+    <div class="container">
+      <p class="eyebrow" data-i18n="ty_included_eyebrow">O que está incluído</p>
+      <h2 data-i18n="ty_included_title">O que começa agora.</h2>
+      <ul class="included-list">
+        <li>
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div class="item-text">
+            <strong data-i18n="ty_item1_title">Protocolo de 16 semanas personalizado</strong>
+            <span data-i18n="ty_item1_desc">Estruturado com base no mapeamento do seu onboarding — rotina, histórico e objetivos reais.</span>
+          </div>
+        </li>
+        <li>
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="item-text">
+            <strong data-i18n="ty_item2_title">Acompanhamento ativo via app</strong>
+            <span data-i18n="ty_item2_desc">Retornos sobre seus registros, análises quinzenais e ajustes de protocolo com base nos seus dados.</span>
+          </div>
+        </li>
+        <li>
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="item-text">
+            <strong data-i18n="ty_item3_title">Acesso direto ao coach</strong>
+            <span data-i18n="ty_item3_desc">Denis acompanha sua evolução de dentro do app — não é suporte genérico, é coaching de fato.</span>
+          </div>
+        </li>
+        <li>
+          <div class="item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="item-text">
+            <strong data-i18n="ty_item4_title">Garantia de 21 dias</strong>
+            <span data-i18n="ty_item4_desc">Dentro das primeiras 3 semanas, se não for o momento certo, devolvo 100% sem formulário e sem justificativa.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BLOCO 4: TIMELINE -->
+  <section class="timeline-section">
+    <div class="container">
+      <p class="eyebrow" data-i18n="ty_timeline_eyebrow">O que acontece agora</p>
+      <h2 data-i18n="ty_timeline_title">Os próximos passos.</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot active"><span>1</span></div>
+          <div class="tl-content">
+            <p class="tl-when" data-i18n="ty_step1_when">Agora</p>
+            <h3 data-i18n="ty_step1_title">Entre pelo WhatsApp</h3>
+            <p data-i18n="ty_step1_desc">Manda a mensagem pelo botão acima. Isso inicia o processo de onboarding.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>2</span></div>
+          <div class="tl-content">
+            <p class="tl-when" data-i18n="ty_step2_when">Próximas 24–48h</p>
+            <h3 data-i18n="ty_step2_title">Mapeamento inicial</h3>
+            <p data-i18n="ty_step2_desc">Denis entra em contato para coletar as informações que vão moldar o seu protocolo específico.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>3</span></div>
+          <div class="tl-content">
+            <p class="tl-when" data-i18n="ty_step3_when">Dias 1–7</p>
+            <h3 data-i18n="ty_step3_title">Apresentação do protocolo</h3>
+            <p data-i18n="ty_step3_desc">Você recebe a proposta personalizada com base no seu mapeamento e o protocolo definitivo é configurado no app.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><span>4</span></div>
+          <div class="tl-content">
+            <p class="tl-when" data-i18n="ty_step4_when">A partir da semana 1</p>
+            <h3 data-i18n="ty_step4_title">Execução com acompanhamento</h3>
+            <p data-i18n="ty_step4_desc">As 16 semanas do C.O.R.E. 8 começam. Denis monitora seus dados, responde seus registros e ajusta o protocolo ao longo do ciclo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 5: APP -->
+  <section class="app-section">
+    <div class="container">
+      <div class="app-card">
+        <div class="app-info">
+          <p class="eyebrow" data-i18n="ty_app_eyebrow">Plataforma do programa</p>
+          <h3 data-i18n="ty_app_title">Baixe a sua central de comando. App Integr8.</h3>
+          <p data-i18n="ty_app_desc">O app onde o protocolo vai viver — treinos, registros, check-ins e comunicação direta com Denis. Você vai precisar dele no onboarding.</p>
+          <div class="store-badges">
+            <a href="https://apps.apple.com/app/fitbudd/id1458052393" target="_blank" rel="noopener noreferrer" class="badge">
+              <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.fitbudd.fitbuddapp" target="_blank" rel="noopener noreferrer" class="badge">
+              <svg viewBox="0 0 24 24"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l15 8.5c.6.34.6 1.26 0 1.6l-15 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+        <div class="app-visual">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+            <path d="M9 7h6M9 11h4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>
+        <span data-i18n="ty_footer_contact">Dúvidas? Fale diretamente com Denis:</span>
+        <a href="https://wa.me/12269617351" target="_blank" rel="noopener noreferrer" data-i18n="ty_footer_wa">WhatsApp</a>
+        <span class="footer-divider">·</span>
+        <a href="mailto:denis@integr8-hub.com">denis@integr8-hub.com</a>
+      </p>
+      <p style="margin-top: 12px;">
+        &copy; 2025 INTEGR8
+        <span class="footer-divider">·</span>
+        <a href="https://integr8-hub.com/" target="_blank" rel="noopener noreferrer">integr8-hub.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── THEME ─────────────────────────────────────────────── */
+    (function () {
+      const toggle   = document.getElementById('theme-toggle');
+      const iconMoon = document.querySelector('.icon-moon');
+      const iconSun  = document.querySelector('.icon-sun');
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        iconMoon.style.display = theme === 'light' ? 'none'  : 'block';
+        iconSun.style.display  = theme === 'light' ? 'block' : 'none';
+      }
+
+      const saved       = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      setTheme(saved || (prefersLight ? 'light' : 'dark'));
+
+      toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    })();
+
+    /* ── LANGUAGE ──────────────────────────────────────────── */
+    (function () {
+      const toggle = document.getElementById('lang-toggle');
+
+      /* Translations for this page only — extend as needed */
+      const i18n = {
+        pt: {
+          ty_page_title:        'Bem-vindo ao INTEGR8 — Próximo passo',
+          ty_eyebrow:           'Pagamento confirmado',
+          ty_hero_title:        'Você está dentro<br/>do Protocolo C.O.R.E. 8.',
+          ty_hero_subtitle:     'O acesso está reservado. O próximo passo é simples — e acontece agora, pelo WhatsApp.',
+          ty_next_eyebrow:      'O que fazer agora',
+          ty_next_title:        'Entre em contato pelo WhatsApp<br/>para iniciar seu onboarding.',
+          ty_next_desc:         'Antes de qualquer protocolo entrar em vigor, vamos mapear sua rotina, seus objetivos e sua realidade. É a partir disso que o programa funciona — não de uma planilha padrão.',
+          ty_next_cta:          'Iniciar onboarding agora',
+          ty_next_note:         'Denis responde em até 24 horas nos dias úteis',
+          ty_whatsapp_url:      'https://wa.me/12269617351?text=Ol%C3%A1%2C+acabei+de+me+inscrever+no+Protocolo+C.O.R.E.+8+e+quero+iniciar+o+onboarding.',
+          ty_included_eyebrow:  'O que está incluído',
+          ty_included_title:    'O que começa agora.',
+          ty_item1_title:       'Protocolo de 16 semanas personalizado',
+          ty_item1_desc:        'Estruturado com base no mapeamento do seu onboarding — rotina, histórico e objetivos reais.',
+          ty_item2_title:       'Acompanhamento ativo via app',
+          ty_item2_desc:        'Retornos sobre seus registros, análises quinzenais e ajustes de protocolo com base nos seus dados.',
+          ty_item3_title:       'Acesso direto ao coach',
+          ty_item3_desc:        'Denis acompanha sua evolução de dentro do app — não é suporte genérico, é coaching de fato.',
+          ty_item4_title:       'Garantia de 21 dias',
+          ty_item4_desc:        'Dentro das primeiras 3 semanas, se não for o momento certo, devolvo 100% sem formulário e sem justificativa.',
+          ty_timeline_eyebrow:  'O que acontece agora',
+          ty_timeline_title:    'Os próximos passos.',
+          ty_step1_when:        'Agora',
+          ty_step1_title:       'Entre pelo WhatsApp',
+          ty_step1_desc:        'Manda a mensagem pelo botão acima. Isso inicia o processo de onboarding.',
+          ty_step2_when:        'Próximas 24–48h',
+          ty_step2_title:       'Mapeamento inicial',
+          ty_step2_desc:        'Denis entra em contato para coletar as informações que vão moldar o seu protocolo específico.',
+          ty_step3_when:        'Dias 1–7',
+          ty_step3_title:       'Apresentação do protocolo',
+          ty_step3_desc:        'Você recebe a proposta personalizada com base no seu mapeamento e o protocolo definitivo é configurado no app.',
+          ty_step4_when:        'A partir da semana 1',
+          ty_step4_title:       'Execução com acompanhamento',
+          ty_step4_desc:        'As 16 semanas do C.O.R.E. 8 começam. Denis monitora seus dados, responde seus registros e ajusta o protocolo ao longo do ciclo.',
+          ty_app_eyebrow:       'Plataforma do programa',
+          ty_app_title:         'Baixe a sua central de comando. App Integr8.',
+          ty_app_desc:          'O app onde o protocolo vai viver — treinos, registros, check-ins e comunicação direta com Denis. Você vai precisar dele no onboarding.',
+          ty_footer_contact:    'Dúvidas? Fale diretamente com Denis:',
+          ty_footer_wa:         'WhatsApp',
+        },
+        en: {
+          ty_page_title:        'Welcome to INTEGR8 — Next step',
+          ty_eyebrow:           'Payment confirmed',
+          ty_hero_title:        "You're in<br/>the C.O.R.E. 8 Protocol.",
+          ty_hero_subtitle:     'Access is reserved. The next step is simple — and happens now, through the app.',
+          ty_next_eyebrow:      'What to do now',
+          ty_next_title:        'Contact us via WhatsApp<br/>to start your onboarding.',
+          ty_next_desc:         'Before any protocol kicks in, we map your routine, goals and reality. That is what makes the program work — not a generic spreadsheet.',
+          ty_next_cta:          'Start onboarding now',
+          ty_next_note:         'Denis responds within 24 hours on business days',
+          ty_whatsapp_url:      'https://wa.me/12269617351?text=Hi%2C+I+just+signed+up+for+the+C.O.R.E.+8+Protocol+and+want+to+start+onboarding.',
+          ty_included_eyebrow:  "What's included",
+          ty_included_title:    'What starts now.',
+          ty_item1_title:       'Personalized 16-week protocol',
+          ty_item1_desc:        'Built from your onboarding map — your routine, history and real goals.',
+          ty_item2_title:       'Active coaching via app',
+          ty_item2_desc:        'Feedback on your logs, bi-weekly reviews and protocol adjustments based on your data.',
+          ty_item3_title:       'Direct access to your coach',
+          ty_item3_desc:        "Denis tracks your progress from inside the app — it's not generic support, it's real coaching.",
+          ty_item4_title:       '21-day guarantee',
+          ty_item4_desc:        "Within the first 3 weeks, if it's not the right moment, I refund 100% — no form, no justification.",
+          ty_timeline_eyebrow:  'What happens now',
+          ty_timeline_title:    'The next steps.',
+          ty_step1_when:        'Now',
+          ty_step1_title:       'Message via WhatsApp',
+          ty_step1_desc:        'Send the message using the button above. That kicks off the onboarding process.',
+          ty_step2_when:        'Next 24–48h',
+          ty_step2_title:       'Initial mapping',
+          ty_step2_desc:        'Denis reaches out to gather the information that will shape your specific protocol.',
+          ty_step3_when:        'Days 1–7',
+          ty_step3_title:       'Protocol presentation',
+          ty_step3_desc:        'You receive the personalised proposal and the final protocol is set up in the app.',
+          ty_step4_when:        'From week 1',
+          ty_step4_title:       'Execution with coaching',
+          ty_step4_desc:        'The 16 weeks of C.O.R.E. 8 begin. Denis monitors your data, responds to your logs and adjusts the protocol throughout the cycle.',
+          ty_app_eyebrow:       'Program platform',
+          ty_app_title:         'Download your command centre. Integr8 App.',
+          ty_app_desc:          "The app where the protocol lives — workouts, logs, check-ins and direct communication with Denis. You'll need it for onboarding.",
+          ty_footer_contact:    'Questions? Reach Denis directly:',
+          ty_footer_wa:         'WhatsApp',
+        },
+      };
+
+      let currentLang = localStorage.getItem('lang') || 'pt';
+
+      function applyLang(lang) {
+        const t = i18n[lang] || i18n['pt'];
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+        toggle.childNodes[0].textContent = lang === 'en' ? 'EN ' : 'PT ';
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        document.querySelectorAll('[data-i18n-href]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-href');
+          if (t[key] !== undefined) el.href = t[key];
+        });
+        if (t['ty_page_title']) document.title = t['ty_page_title'];
+      }
+
+      applyLang(currentLang);
+
+      toggle.addEventListener('click', () => {
+        applyLang(currentLang === 'pt' ? 'en' : 'pt');
+      });
+    })();
+
+    /* ── HERO BG ───────────────────────────────────────────── */
+    document.getElementById('hero-bg').style.backgroundImage =
+      "url('assets/images/center_couple.png')";
+  </script>
+
+</body>
+</html>
