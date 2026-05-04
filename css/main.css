@@ -73,7 +73,6 @@ body {
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
-  will-change: transform, opacity;
 }
 
 /* ── ACCESSIBILITY ── */
@@ -537,7 +536,7 @@ body {
 .features__nav-item {
   font-family: var(--font-display);
   font-size: 1.50rem;
-  color: #333;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: color 0.4s;
   background: none;
