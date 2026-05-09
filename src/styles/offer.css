@@ -1,103 +1,20 @@
-/* ── OFFER ── */
-.offer {
-  padding: var(--pad-section);
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.offer__card {
-  padding: 80px;
-  text-align: center;
-  margin-top: 60px;
-}
-.offer__header {
-  margin-bottom: 40px;
-}
-.offer__header h3 {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  color: var(--accent);
-  margin-bottom: 16px;
-}
-.price {
-  font-family: var(--font-display);
-  font-weight: 800;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 8px;
-}
-.price .currency { font-size: 2rem; margin-top: 10px; margin-right: 8px; }
-.price .amount   { font-size: 6rem; line-height: 1; }
-.price .cents    { font-size: 2rem; margin-top: 10px; }
-.price .period   { font-size: 1.5rem; color: var(--text-secondary); margin-top: auto; margin-bottom: 10px; margin-left: 8px; }
-.cycle {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-}
-.offer__stack {
-  text-align: left;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 40px;
-  border-radius: 16px;
-  margin: 0 auto 40px auto;
-  display: inline-block;
-  border: 1px solid var(--border-glass);
-}
-.stack-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 24px;
-}
-.offer__features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 1.1rem;
-}
-.offer__features li {
-  color: var(--text-secondary);
-}
-.offer__features strong {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-.guarantee {
-  margin-top: 24px;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-@media (max-width: 1024px) {
-  .price .amount {
-    font-size: 4rem;
-  }
-  .offer__stack {
-    text-align: center;
-    padding: 32px 24px;
-  }
-}
-
-@media (max-width: 640px) {
-  .offer__card {
-    padding: 32px 20px;
-  }
-  .price {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0 2px;
-  }
-  .price .amount {
-    font-size: 2.8rem;
-  }
-  .price .currency,
-  .price .cents,
-  .price .period {
-    font-size: 1rem;
-    margin-top: 8px;
-  }
-  .offer__stack {
-    width: 100%;
-    display: block;
-  }
-}
+﻿/* OFERTA */
+.offer { padding: 5rem 1.25rem; background: var(--dark); }
+.offer__inner { max-width: 52rem; margin: 0 auto; }
+.offer__header { margin-bottom: 2.5rem; text-align: center; }
+.offer__title { font-family: var(--font-display,'Barlow Condensed',sans-serif); font-size: clamp(2.25rem,5.5vw,3.75rem); font-weight: 900; text-transform: uppercase; line-height: 1.05; color: var(--text); margin: .75rem 0 1rem; }
+.offer__sub { font-size: clamp(1rem,2vw,1.1rem); color: var(--mid); line-height: 1.7; max-width: 42rem; margin: 0 auto; }
+.offer__card { border: 1px solid color-mix(in srgb,var(--neon) 30%,transparent); border-radius: 1rem; padding: 2.5rem 2rem; background: color-mix(in srgb,var(--text) 3%,transparent); }
+.offer__card-label { font-family: var(--font-display,'Barlow Condensed',sans-serif); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--neon); margin-bottom: 1.5rem; }
+.offer__price { display: flex; align-items: baseline; gap: .25rem; margin-bottom: .4rem; }
+.offer__currency { font-family: var(--font-display,'Barlow Condensed',sans-serif); font-size: 1.25rem; font-weight: 700; color: var(--mid); }
+.offer__amount { font-family: var(--font-display,'Barlow Condensed',sans-serif); font-size: clamp(3rem,8vw,4.5rem); font-weight: 900; color: var(--text); line-height: 1; }
+.offer__cents { font-family: var(--font-display,'Barlow Condensed',sans-serif); font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.offer__period { font-size: 1rem; color: var(--mid); }
+.offer__price-note { font-size: .85rem; color: var(--mid); margin-bottom: 2rem; }
+.offer__features { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: .75rem; }
+.offer__features li { display: flex; align-items: flex-start; gap: .75rem; font-size: .95rem; color: var(--mid); line-height: 1.5; }
+.offer__check { color: var(--neon); flex-shrink: 0; margin-top: .1rem; }
+.offer__cta { width: 100%; justify-content: center; margin-bottom: 1.5rem; display: flex; }
+.offer__guarantee { font-size: .875rem; color: var(--mid); line-height: 1.6; text-align: center; margin-bottom: 1rem; }
+.offer__scarcity { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--neon); text-align: center; opacity: .8; }
