@@ -252,6 +252,57 @@ body {
   transform: translateY(0);
 }
 
+/* ── V5 BUTTONS ── */
+.btn-v5-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--neon);
+  color: #0a0d0a;
+  border: 2px solid var(--neon);
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--font-display, 'Barlow Condensed', sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.btn-v5-primary:hover {
+  background: transparent;
+  color: var(--neon);
+  transform: translateY(-2px);
+}
+.btn-v5-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--text);
+  border: 2px solid color-mix(in srgb, var(--text) 30%, transparent);
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--font-display, 'Barlow Condensed', sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.btn-v5-ghost:hover {
+  border-color: var(--text);
+  transform: translateY(-2px);
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .section-title {
