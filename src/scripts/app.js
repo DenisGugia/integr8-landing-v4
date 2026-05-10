@@ -4,6 +4,7 @@ import Lenis from '@studio-freight/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ── Smooth scroll ─────────────────────────────────────────────────────────────
 function initLenis() {
   const lenis = new Lenis({
     duration: 1.2,
@@ -14,56 +15,32 @@ function initLenis() {
     mouseMultiplier: 1,
     smoothTouch: false,
   });
-
   lenis.on('scroll', ScrollTrigger.update);
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
   gsap.ticker.lagSmoothing(0);
 }
 
-function initMagnetic() {
-  document.querySelectorAll('.magnetic').forEach((elem) => {
-    elem.addEventListener('mousemove', (e) => {
-      const pos = elem.getBoundingClientRect();
-      const x = e.clientX - pos.left - pos.width / 2;
-      const y = e.clientY - pos.top - pos.height / 2;
-      const strength = elem.dataset.strength || 20;
-
-      gsap.to(elem, { x: (x / pos.width) * strength, y: (y / pos.height) * strength, duration: 0.5, ease: 'power2.out' });
-
-      const text = elem.querySelector('.btn-text');
-      if (text) {
-        gsap.to(text, { x: (x / pos.width) * (strength / 2), y: (y / pos.height) * (strength / 2), duration: 0.5, ease: 'power2.out' });
-      }
-    });
-
-    elem.addEventListener('mouseleave', () => {
-      gsap.to(elem, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
-      const text = elem.querySelector('.btn-text');
-      if (text) gsap.to(text, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
-    });
-  });
-}
-
+// ── Fade-up reveals ───────────────────────────────────────────────────────────
 function initFadeUp() {
   gsap.utils.toArray('.fade-up').forEach((el) => {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 85%' },
+      scrollTrigger: { trigger: el, start: 'top 88%' },
       y: 0,
       opacity: 1,
-      duration: 1,
-      delay: el.dataset.delay || 0,
+      duration: 0.9,
+      delay: parseFloat(el.dataset.delay) || 0,
       ease: 'power3.out',
     });
   });
 }
 
+// ── Features sticky nav ───────────────────────────────────────────────────────
 function initFeaturesNav() {
   const navItems = document.querySelectorAll('.features__nav-item');
-  const cards = document.querySelectorAll('.features__card');
+  const cards    = document.querySelectorAll('.features__card');
+  if (!navItems.length || !cards.length) return;
 
+  // Scroll-based highlight
   cards.forEach((card, index) => {
     ScrollTrigger.create({
       trigger: card,
@@ -77,30 +54,43 @@ function initFeaturesNav() {
       },
     });
   });
-}
 
-function initNavbar() {
-  const navbar = document.querySelector('.navbar');
-  if (!navbar) return;
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  // Click to scroll to card
+  navItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        navItems.forEach((nav) => nav.classList.remove('active'));
+        item.classList.add('active');
+      }
+    });
   });
 }
 
+// ── Navbar scroll state ───────────────────────────────────────────────────────
+function initNavbar() {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 50);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// ── Theme toggle ──────────────────────────────────────────────────────────────
 function initTheme() {
-  const toggle = document.getElementById('theme-toggle');
+  const toggle   = document.getElementById('theme-toggle');
   const iconMoon = document.querySelector('.icon-moon');
-  const iconSun = document.querySelector('.icon-sun');
+  const iconSun  = document.querySelector('.icon-sun');
   if (!toggle) return;
 
   function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    iconMoon.style.display = theme === 'light' ? 'none' : 'block';
-    iconSun.style.display = theme === 'light' ? 'block' : 'none';
+    if (iconMoon) iconMoon.style.display = theme === 'light' ? 'none'  : 'block';
+    if (iconSun)  iconSun.style.display  = theme === 'light' ? 'block' : 'none';
   }
 
-  const saved = localStorage.getItem('theme');
+  const saved       = localStorage.getItem('theme');
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
   setTheme(saved || (prefersLight ? 'light' : 'dark'));
 
@@ -110,118 +100,83 @@ function initTheme() {
   });
 }
 
-function initLangToggle() {
-  const toggle = document.getElementById('lang-toggle');
-  if (!toggle) return;
-  toggle.addEventListener('click', () => {
-    const isEn = window.location.pathname.startsWith('/en');
-    window.location.href = isEn ? '/' : '/en/';
-  });
+// ── Sticky CTA bar ────────────────────────────────────────────────────────────
+function initStickyCTA() {
+  const bar    = document.getElementById('stickyCTA');
+  const hero   = document.getElementById('hero');
+  const offer  = document.getElementById('oferta');
+  if (!bar || !hero) return;
+
+  const onScroll = () => {
+    const heroBottom  = hero.getBoundingClientRect().bottom;
+    const offerTop    = offer ? offer.getBoundingClientRect().top : Infinity;
+    const shouldShow  = heroBottom < 0 && offerTop > window.innerHeight;
+
+    bar.classList.toggle('visible', shouldShow);
+    bar.setAttribute('aria-hidden', String(!shouldShow));
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
-function initOrbit() {
-  const orbiters = document.querySelectorAll('.pillar-orbiter');
-  const orbitRing = document.querySelector('.orbit-ring');
-  if (!orbiters.length || !orbitRing) return;
+// ── GTM event tracking ────────────────────────────────────────────────────────
+function initGTM() {
+  window.dataLayer = window.dataLayer || [];
 
-  const numPillars = orbiters.length;
-  const radiusX = window.innerWidth > 1024 ? 480 : 200;
-
-  orbiters.forEach((orbiter, i) => {
-    const angle = (i / numPillars) * Math.PI * 2;
-    gsap.set(orbiter, { rotationY: (angle * 180) / Math.PI });
-
-    const content = orbiter.querySelector('.pillar-content');
-    gsap.set(content, {
-      xPercent: -50,
-      yPercent: -50,
-      z: radiusX,
-      rotationY: -(angle * 180) / Math.PI,
-    });
-  });
-
-  gsap.set(orbitRing, { rotationX: -15, rotationZ: 5, xPercent: -50, yPercent: -50 });
-  gsap.set('.orbit-center', { rotationX: 15, rotationZ: -5, xPercent: -50, yPercent: -50 });
-
-  const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'none' } });
-  tl.to(orbiters, { rotationY: '+=360', duration: 30 }, 0);
-  orbiters.forEach((orbiter) => {
-    const content = orbiter.querySelector('.pillar-content');
-    tl.to(content, { rotationY: '-=360', duration: 30 }, 0);
-  });
-}
-
-function initHeroNotif() {
-  const notif = document.querySelector('.hero__notification');
-  if (!notif) return;
-
-  const tl = gsap.timeline({ delay: 1 });
-  tl.to(notif, { opacity: 1, x: 0, scale: 1, duration: 1, ease: 'back.out(1.7)' });
-  tl.to('.notif__icon svg path', { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
-
-  gsap.to(notif, { y: '-=15', duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-}
-
-export function initAll() {
-  initLenis();
-  initMagnetic();
-  initFadeUp();
-  initFeaturesNav();
-  initNavbar();
-  initTheme();
-  initLangToggle();
-  initOrbit();
-  initHeroNotif();
-}
-// GTM Event Tracking
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // CTA Click
-  const ctaButtons = document.querySelectorAll('.btn-primary, a.btn-primary');
-  ctaButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      const buttonText = this.textContent.trim() || this.innerText.trim();
+  // CTA clicks — covers both old .btn-primary and new .btn-v5-primary
+  document.querySelectorAll('.btn-primary, .btn-v5-primary, a.btn-primary').forEach((btn) => {
+    btn.addEventListener('click', function () {
       window.dataLayer.push({
-        'event': 'cta_click',
-        'button_text': buttonText,
-        'button_location': this.closest('section')?.id || 'unknown',
-        'timestamp': new Date().toISOString()
+        event: 'cta_click',
+        button_text: this.textContent.trim(),
+        button_location: this.closest('section')?.id || 'unknown',
+        timestamp: new Date().toISOString(),
       });
     });
   });
 
-  // View Pricing
+  // View pricing section
   const pricingSection = document.getElementById('oferta');
   if (pricingSection) {
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
+    new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting && !entry.target.dataset.priceViewTracked) {
           window.dataLayer.push({
-            'event': 'view_pricing',
-            'section': 'offer',
-            'price_displayed': '$49.90 CAD/mês',
-            'timestamp': new Date().toISOString()
+            event: 'view_pricing',
+            section: 'offer',
+            price_displayed: '$49.90 CAD/mês',
+            timestamp: new Date().toISOString(),
           });
           entry.target.dataset.priceViewTracked = 'true';
         }
       });
-    }, { threshold: 0.5 });
-    observer.observe(pricingSection);
+    }, { threshold: 0.5 }).observe(pricingSection);
   }
 
-  // Begin Checkout
-  const checkoutButton = document.querySelector('.offer__card .btn-primary');
-  if (checkoutButton) {
-    checkoutButton.addEventListener('click', function() {
+  // Begin checkout
+  const checkoutBtn = document.querySelector('.offer__cta, .offer__card .btn-v5-primary');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
       window.dataLayer.push({
-        'event': 'begin_checkout',
-        'product': 'Protocolo INTEGR8',
-        'price': '$49.90 CAD',
-        'currency': 'CAD',
-        'timestamp': new Date().toISOString()
+        event: 'begin_checkout',
+        product: 'Protocolo C.O.R.E. 8',
+        price: '$49.90 CAD',
+        currency: 'CAD',
+        timestamp: new Date().toISOString(),
       });
     });
   }
 
   console.log('✓ GTM Events initialized');
-});
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+export function initAll() {
+  initLenis();
+  initFadeUp();
+  initFeaturesNav();
+  initNavbar();
+  initTheme();
+  initStickyCTA();
+  initGTM();
+}

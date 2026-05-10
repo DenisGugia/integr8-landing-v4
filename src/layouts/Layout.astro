@@ -3,13 +3,17 @@ export interface Props {
   title?: string;
   description?: string;
   lang?: string;
+  canonicalUrl?: string;
 }
 
 const {
-  title = 'Integr8 | O Método Magnético',
-  description = 'O Integr8 monitora 8 pilares da sua rotina para recalibrar seu plano em tempo real.',
+  title = 'INTEGR8 — Protocolo C.O.R.E. 8',
+  description = 'Protocolo de saúde adaptativo que acompanha 8 áreas da sua rotina real. Treino, nutrição, sono e mais — ajustados continuamente ao que você tem e pode fazer.',
   lang = 'pt-BR',
+  canonicalUrl = 'https://integr8-hub.com/',
 } = Astro.props;
+
+const ogImage = 'https://integr8-hub.com/assets/images/og-image.webp';
 ---
 
 <!DOCTYPE html>
@@ -21,6 +25,56 @@ const {
     <meta name="theme-color" content="#F7F9FC" media="(prefers-color-scheme: light)" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalUrl} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="pt_BR" />
+    <meta property="og:site_name"   content="INTEGR8" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+    <!-- Schema.org — Person + Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://integr8-hub.com/#denis-gugia",
+          "name": "Denis Gugia",
+          "jobTitle": "Personal Trainer & Nutrition Coach",
+          "description": "Educador Físico com mais de 25 anos de experiência. Certificado pela ISSA em Personal Training, Nutrition Coaching, Corrective Exercise, Strength & Conditioning e Exercise Effect.",
+          "url": "https://integr8-hub.com/",
+          "sameAs": ["https://www.instagram.com/denisgugia"]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://integr8-hub.com/#protocolo-core-8",
+          "name": "Protocolo C.O.R.E. 8",
+          "description": "Protocolo de saúde adaptativo que monitora 8 áreas da rotina — treino, nutrição, sono, hidratação, movimento, peso, medidas e fotos — com acompanhamento contínuo de coach.",
+          "provider": { "@id": "https://integr8-hub.com/#denis-gugia" },
+          "url": "https://integr8-hub.com/",
+          "offers": {
+            "@type": "Offer",
+            "price": "49.90",
+            "priceCurrency": "CAD",
+            "description": "Acompanhamento contínuo com ciclos definidos. Vagas limitadas por ciclo."
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Preconnect to font origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,14 +82,14 @@ const {
 
     <!-- Non-blocking font load: avoids render-blocking stylesheet -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,300;1,700;1,900&display=swap"
       rel="preload"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,300;1,700;1,900&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -45,7 +99,7 @@ const {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         'page_type': 'sales_page',
-        'page_title': 'Integr8 - O Método Magnético',
+        'page_title': 'INTEGR8 - Protocolo C.O.R.E. 8',
         'site_section': 'homepage'
       });
     </script>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://integr8-hub.com/sitemap.xml

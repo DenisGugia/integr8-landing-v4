@@ -3,42 +3,91 @@ import '../styles/hero.css';
 ---
 
 <section class="hero" id="hero">
-  <div class="hero__glow"></div>
-  <div class="hero__content">
-    <p class="hero__kicker fade-up">MÉTODO INTEGR8</p>
-    <h1 class="hero__title">
-      <span class="line"><span class="word">Seu</span> <span class="word">corpo</span> <span class="word">evolui.</span></span>
-      <span class="line"><span class="word">O</span> <span class="word">método</span> <span class="word">se</span> <span class="word">adapta.</span></span>
-    </h1>
-    <p class="hero__subtitle fade-up" data-delay="0.2">
-      A maioria dos programas falha porque são estáticos. O seu corpo é dinâmico. O Integr8 monitora 8 pilares da
-      sua rotina para recalibrar seu plano em tempo real. O resultado nunca para de vir.
-    </p>
-    <div class="hero__cta-wrapper fade-up" data-delay="0.4">
-      <a href="#oferta" class="btn-primary magnetic" data-strength="50">
-        <span class="btn-text">Começar Minha Transformação</span>
-      </a>
+
+  <!-- Photo: absolute background in mobile, grid item in desktop -->
+  <picture>
+    <source
+      media="(max-width: 767px)"
+      srcset="/assets/images/center_couple.webp"
+      sizes="100vw"
+      type="image/webp">
+    <source
+      media="(min-width: 768px)"
+      srcset="/assets/images/center_couple.webp"
+      sizes="50vw"
+      type="image/webp">
+    <img
+      class="hero-bg-photo"
+      src="/assets/images/center_couple.webp"
+      alt="Denis Gugia e parceira de treino — coach do Protocolo C.O.R.E. 8"
+      fetchpriority="high"
+      decoding="async"
+      width="1200"
+      height="800">
+  </picture>
+
+  <!-- Overlay: gradient dark for legibility in mobile -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Content: overlaid in mobile, left column in desktop -->
+  <div class="hero-content">
+
+    <!-- Eyebrow pill -->
+    <div class="eyebrow-pill fade-up" data-delay="0.1">
+      <span class="eyebrow-dot" aria-hidden="true"></span>
+      Denis Gugia&nbsp;·&nbsp;Protocolo C.O.R.E. 8
     </div>
-  </div>
 
-  <div class="hero__visual fade-up" data-delay="0.6">
-    <div class="hero__mockup-wrapper" data-tilt>
-      <div class="mockup-glow"></div>
-      <img src="/assets/images/hero_mockup.webp" alt="App Integr8" class="hero__mockup-img"
-           fetchpriority="high" loading="eager" decoding="sync"
-           width="1920" height="1080" />
+    <!-- Headline: 3 lines, 3 treatments -->
+    <h1 class="hero-headline fade-up" data-delay="0.25">
+      <span class="hero-line-1">VOCÊ NÃO PRECISA DE MAIS TEMPO.</span>
+      <span class="hero-line-2">PRECISA DE UM PLANO</span>
+      <span class="hero-line-3">QUE CAIBA NO QUE VOCÊ TEM.</span>
+    </h1>
 
-      <div class="hero__notification" id="hero-notif">
-        <div class="notif__icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="notif__content">
-          <p class="notif__title" data-i18n="hero_notif_title">Treino Concluído!</p>
-          <p class="notif__subtitle" data-i18n="hero_notif_subtitle">Dados enviados ao Coach.</p>
-        </div>
+    <!-- Subheadline -->
+    <p class="hero-sub fade-up" data-delay="0.4">
+      Um protocolo montado para a sua rotina real, o seu equipamento disponível e o tempo que você tem.
+      Com ajuste contínuo baseado na sua realidade, não em suposições.
+    </p>
+
+    <!-- Stats -->
+    <div class="hero-stats fade-up" data-delay="0.5">
+      <div class="stat-item">
+        <span class="stat-number">25+</span>
+        <span class="stat-label">anos de experiência</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">8</span>
+        <span class="stat-label">áreas acompanhadas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">21</span>
+        <span class="stat-label">dias de garantia</span>
       </div>
     </div>
+
+    <!-- CTAs -->
+    <div class="hero-buttons fade-up" data-delay="0.6">
+      <a href="#cta" class="btn-v5-primary">
+        COMEÇAR MEU PROTOCOLO&nbsp;&rarr;
+      </a>
+      <a href="#method" class="btn-v5-ghost">
+        VER COMO FUNCIONA
+      </a>
+    </div>
+
   </div>
+
+  <!-- Fade bottom: transition to next section -->
+  <div class="hero-fade-bottom" aria-hidden="true"></div>
+
 </section>
+
+<!-- Sticky CTA bar — mobile only, controlled via JS in Phase 6 -->
+<div class="sticky-cta-bar" id="stickyCTA" aria-hidden="true">
+  <a href="#cta" class="sticky-cta-link">
+    <span class="sticky-cta-text">COMEÇAR MEU PROTOCOLO</span>
+    <span aria-hidden="true">&nbsp;&rarr;</span>
+  </a>
+</div>

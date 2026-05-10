@@ -1,0 +1,57 @@
+﻿<div class="exit-modal-overlay" id="exitModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="exitModalHeadline">
+  <div class="exit-modal-box">
+    <button class="exit-modal-close" id="exitModalClose" aria-label="Fechar">&times;</button>
+    <p class="exit-modal-eyebrow">ANTES DE FECHAR</p>
+    <p class="exit-modal-headline" id="exitModalHeadline">
+      Os próximos meses vão passar com você cuidando da sua saúde ou não.<br>
+      Como você quer estar quando eles passarem?
+    </p>
+    <div class="exit-modal-actions">
+      <a href="#oferta" class="btn-v5-primary" id="exitModalCTA">COMEÇAR MEU PROTOCOLO &rarr;</a>
+      <button class="btn-v5-ghost" id="exitModalDismiss">Continuar lendo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modal   = document.getElementById('exitModal');
+  var close   = document.getElementById('exitModalClose');
+  var dismiss = document.getElementById('exitModalDismiss');
+  var cta     = document.getElementById('exitModalCTA');
+  var FLAG    = 'integr8_exit_shown';
+  var section = document.getElementById('projecao');
+
+  if (!modal) return;
+
+  function hasPassed() {
+    if (!section) return false;
+    return section.getBoundingClientRect().top < window.innerHeight;
+  }
+  function showModal() {
+    if (localStorage.getItem(FLAG)) return;
+    if (hasPassed()) return;
+    modal.removeAttribute('aria-hidden');
+    modal.classList.add('open');
+    localStorage.setItem(FLAG, '1');
+    document.body.style.overflow = 'hidden';
+  }
+  function hideModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mouseleave', function(e) {
+      if (e.clientY <= 0) showModal();
+    }, { once: true });
+  }
+
+  if (close)   close.addEventListener('click', hideModal);
+  if (dismiss) dismiss.addEventListener('click', hideModal);
+  if (cta)     cta.addEventListener('click', hideModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) hideModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') hideModal(); });
+})();
+</script>
