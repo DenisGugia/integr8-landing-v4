@@ -32,13 +32,13 @@
     if (localStorage.getItem(FLAG)) return;
     if (hasPassed()) return;
     modal.removeAttribute('aria-hidden');
-    modal.classList.add('is-open');
+    modal.classList.add('open');
     localStorage.setItem(FLAG, '1');
     document.body.style.overflow = 'hidden';
   }
   function hideModal() {
     modal.setAttribute('aria-hidden', 'true');
-    modal.classList.remove('is-open');
+    modal.classList.remove('open');
     document.body.style.overflow = '';
   }
 
